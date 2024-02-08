@@ -1,0 +1,39 @@
+MAIN                                                                                                          PAGE 1
+
+                       1    $MOD51 
+0000                   2    org 00h                                                                                     
+                                                                                   
+0000 7A00              3    mov     r2,#00h                         
+0002 900100            4    mov dptr,#100h                  
+0005 7955              5    mov r1,#055h                    
+0007 759000            6    mov p1,#0h                              
+000A                   7    loop:                                                   
+000A E9                8    mov a,r1                                
+000B F0                9    movx @dptr,a                                    
+000C E0               10    movx a,@dptr                    
+000D 7AFF             11    mov r2,#0ffh                            
+000F 6455             12    xrl a,#055h;                    
+0011 700F             13    jnz exit                                                                
+0013 7A00             14    mov     r2,#00h                         
+0015 A3               15    inc dptr                                                                
+0016 E583             16    mov a,dph                                               
+0018 6417             17    xrl a,#017h;                    
+001A 70EE             18    jnz loop                                                                
+001C E582             19    mov     a,dpl                                           
+001E 64E8             20    xrl a,#0E8h;                    
+0020 70E8             21    jnz loop                                                                
+0022                  22    exit:
+0022 BAFF02           23    cjne r2,#0ffh,noerror   
+0025 D291             24    setb P1.1                                                       
+0027                  25    noerror:        
+                      26    END
+
+VERSION 1.2k ASSEMBLY COMPLETE, 0 ERRORS FOUND
+MAIN                                                                                                          PAGE 2
+
+DPH. . . . . . . . . . . . . . .  D ADDR  0083H  PREDEFINED  
+DPL. . . . . . . . . . . . . . .  D ADDR  0082H  PREDEFINED  
+EXIT . . . . . . . . . . . . . .  C ADDR  0022H  
+LOOP . . . . . . . . . . . . . .  C ADDR  000AH  
+NOERROR. . . . . . . . . . . . .  C ADDR  0027H  
+P1 . . . . . . . . . . . . . . .  D ADDR  0090H  PREDEFINED  
